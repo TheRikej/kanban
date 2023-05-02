@@ -31,6 +31,7 @@ namespace TaskManager.WinForms
                 }
                 this.Hide();
                 new WorkView(user).ShowDialog();
+                Dispose();
             }
             else
             {

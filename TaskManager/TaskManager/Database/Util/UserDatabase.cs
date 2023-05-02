@@ -31,7 +31,7 @@ namespace TaskManager.Database.Util
             return user.PasswordHash == User.HashPassword(password);
         }
 
-        public static async Task<User> GetUserByEmailAsync(string email)
+        public static async Task<User?> GetUserByEmailAsync(string email)
         {
             using var db = new DbAccess();
 
@@ -42,7 +42,7 @@ namespace TaskManager.Database.Util
         {
             using var db = new DbAccess();
 
-            return await db.Users.ToListAsync();
+            return db.Users.ToList();
         }
 
         public static void UpdateUserName(Guid id, string name)

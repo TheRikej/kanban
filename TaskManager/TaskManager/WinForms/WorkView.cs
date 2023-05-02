@@ -1,6 +1,9 @@
+using System.Windows.Forms;
 using TaskManager.Database;
 using TaskManager.Database.Util;
+using TaskManager.WorkControl;
 using TaskManager.UserControl;
+using TaskManager.WinForms;
 using TaskManager.WorkControl;
 
 namespace TaskManager
@@ -13,7 +16,10 @@ namespace TaskManager
             _user = user;
             InitializeComponent();
 
-            RenderWorks();
+            RenderWorks().Wait();
+            dataGWWorks.Update();
+            cbFilterStatus.SelectedIndex = 0;
+            cbFilterPriority.SelectedIndex = 0;
         }
 
         private async void NewTaskButton_Click(object sender, EventArgs e)
@@ -25,15 +31,33 @@ namespace TaskManager
 
         private async Task RenderWorks()
         {
-            listView1.Items.Clear();
-            foreach (var work in await WorkDatabase.GetWorksOfUserAsync(_user))
-            {
-                //ListViewItem item = new ListViewItem();
-                //item.SubItems.Add(work.Name);
-                //item.SubItems.Add(work.Description);
-                listView1.Items.Add(work.Name);
-            }
+            dataGWWorks.DataSource = (await WorkDatabase.GetWorksOfUserAsync(_user))
+                    .Where(work => (cbFilterStatus.SelectedIndex == 0) ? true : work.Status == (WorkStatus)(cbFilterStatus.SelectedIndex - 1))
+                    .Where(work => work.Priority >= cbFilterPriority.SelectedIndex)
+                    .OrderBy(work => (-work.Priority, work.DueDate))
+                    .ToList();
+
+            dataGWWorks.Columns["Creator"].ValueType = typeof(string);
+            dataGWWorks.Columns.Remove("CreatorId");
+            dataGWWorks.Columns.Remove("Id");
+
+            dataGWWorks.Update();
         }
 
+        private async void dataGWWorks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            new WorkEdit((Work)dataGWWorks.CurrentRow.DataBoundItem).ShowDialog();
+            await RenderWorks();
+        }
+
+        private async void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await RenderWorks();
+        }
+
+        private async void cbFilterPriority_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await RenderWorks();
+        }
     }
 }

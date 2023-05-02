@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            listWorks = new ListBox();
-            listView1 = new ListView();
-            Name = new ColumnHeader();
-            Description = new ColumnHeader();
+            dataGWWorks = new DataGridView();
+            cbFilterStatus = new ComboBox();
+            cbFilterPriority = new ComboBox();
+            label1 = new Label();
+            label2 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGWWorks).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(12, 12);
+            button1.Location = new Point(70, 25);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
@@ -45,48 +47,91 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += NewTaskButton_Click;
             // 
-            // listWorks
+            // dataGWWorks
             // 
-            listWorks.FormattingEnabled = true;
-            listWorks.ItemHeight = 20;
-            listWorks.Location = new Point(59, 132);
-            listWorks.Name = "listWorks";
-            listWorks.Size = new Size(475, 104);
-            listWorks.TabIndex = 1;
+            dataGWWorks.AllowUserToAddRows = false;
+            dataGWWorks.AllowUserToDeleteRows = false;
+            dataGWWorks.AllowUserToResizeRows = false;
+            dataGWWorks.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dataGWWorks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGWWorks.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dataGWWorks.Location = new Point(70, 82);
+            dataGWWorks.Name = "dataGWWorks";
+            dataGWWorks.ReadOnly = true;
+            dataGWWorks.RowHeadersWidth = 51;
+            dataGWWorks.RowTemplate.Height = 29;
+            dataGWWorks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGWWorks.Size = new Size(674, 321);
+            dataGWWorks.TabIndex = 3;
+            dataGWWorks.CellDoubleClick += dataGWWorks_CellDoubleClick;
             // 
-            // listView1
+            // cbFilterStatus
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { Name, Description });
-            listView1.Cursor = Cursors.IBeam;
-            listView1.FullRowSelect = true;
-            listView1.GridLines = true;
-            listView1.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listView1.Location = new Point(70, 268);
-            listView1.Name = "listView1";
-            listView1.RightToLeft = RightToLeft.No;
-            listView1.Size = new Size(464, 121);
-            listView1.TabIndex = 2;
-            listView1.UseCompatibleStateImageBehavior = false;
+            cbFilterStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cbFilterStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFilterStatus.FormattingEnabled = true;
+            cbFilterStatus.Items.AddRange(new object[] { "-----", "TODO", "InProgress", "Paused", "Done", "Canceled" });
+            cbFilterStatus.Location = new Point(582, 26);
+            cbFilterStatus.Name = "cbFilterStatus";
+            cbFilterStatus.Size = new Size(151, 28);
+            cbFilterStatus.TabIndex = 4;
+            cbFilterStatus.SelectedIndexChanged += cbFilter_SelectedIndexChanged;
+            // 
+            // cbFilterPriority
+            // 
+            cbFilterPriority.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFilterPriority.FormattingEnabled = true;
+            cbFilterPriority.Items.AddRange(new object[] { "-----", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            cbFilterPriority.Location = new Point(395, 26);
+            cbFilterPriority.Name = "cbFilterPriority";
+            cbFilterPriority.Size = new Size(151, 28);
+            cbFilterPriority.TabIndex = 5;
+            cbFilterPriority.SelectedIndexChanged += cbFilterPriority_SelectedIndexChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(395, 3);
+            label1.Name = "label1";
+            label1.Size = new Size(85, 20);
+            label1.TabIndex = 6;
+            label1.Text = "Min Priority";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(582, 3);
+            label2.Name = "label2";
+            label2.Size = new Size(49, 20);
+            label2.TabIndex = 7;
+            label2.Text = "Status";
             // 
             // WorkView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(821, 479);
-            Controls.Add(listView1);
-            Controls.Add(listWorks);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(cbFilterPriority);
+            Controls.Add(cbFilterStatus);
+            Controls.Add(dataGWWorks);
             Controls.Add(button1);
+            Name = "WorkView";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)dataGWWorks).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private SaveFileDialog saveFileDialog1;
         private Button button1;
-        private ListBox listWorks;
-        private ListView listView1;
-        private ColumnHeader Name;
-        private ColumnHeader Description;
+        private DataGridView dataGWWorks;
+        private ComboBox cbFilterStatus;
+        private ComboBox cbFilterPriority;
+        private Label label1;
+        private Label label2;
     }
 }

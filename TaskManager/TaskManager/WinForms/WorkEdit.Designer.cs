@@ -1,6 +1,9 @@
-﻿namespace TaskManager.WorkControl
+﻿using System.Windows.Forms;
+using System.Xml.Linq;
+
+namespace TaskManager.WinForms
 {
-    partial class WorkCreation
+    partial class WorkEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -33,12 +36,14 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            CreateButton = new Button();
+            EditButton = new Button();
             dateTimePicker = new DateTimePicker();
             cbPriority = new ComboBox();
             label4 = new Label();
             listAsignees = new ListView();
             label5 = new Label();
+            cbStatus = new ComboBox();
+            tbStatusNote = new TextBox();
             SuspendLayout();
             // 
             // tbName
@@ -83,15 +88,15 @@
             label3.TabIndex = 5;
             label3.Text = "Priority";
             // 
-            // CreateButton
+            // EditButton
             // 
-            CreateButton.Location = new Point(309, 468);
-            CreateButton.Name = "CreateButton";
-            CreateButton.Size = new Size(180, 29);
-            CreateButton.TabIndex = 6;
-            CreateButton.Text = "Create";
-            CreateButton.UseVisualStyleBackColor = true;
-            CreateButton.Click += CreateButton_Click;
+            EditButton.Location = new Point(307, 572);
+            EditButton.Name = "EditButton";
+            EditButton.Size = new Size(180, 29);
+            EditButton.TabIndex = 6;
+            EditButton.Text = "Edit";
+            EditButton.UseVisualStyleBackColor = true;
+            EditButton.Click += EditButton_Click;
             // 
             // dateTimePicker
             // 
@@ -142,40 +147,60 @@
             label5.TabIndex = 11;
             label5.Text = "Asignees";
             // 
-            // WorkCreation
+            // cbStatus
+            // 
+            cbStatus.FormattingEnabled = true;
+            cbStatus.Items.AddRange(new object[] { "TODO", "InProgress", "Paused", "Done", "Canceled" });
+            cbStatus.Location = new Point(102, 488);
+            cbStatus.Name = "cbStatus";
+            cbStatus.Size = new Size(172, 28);
+            cbStatus.TabIndex = 12;
+            // 
+            // tbStatusNote
+            // 
+            tbStatusNote.Location = new Point(307, 488);
+            tbStatusNote.Name = "tbStatusNote";
+            tbStatusNote.Size = new Size(399, 27);
+            tbStatusNote.TabIndex = 13;
+            // 
+            // WorkEdit
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 511);
+            ClientSize = new Size(800, 625);
+            Controls.Add(tbStatusNote);
+            Controls.Add(cbStatus);
             Controls.Add(label5);
             Controls.Add(listAsignees);
             Controls.Add(label4);
             Controls.Add(cbPriority);
             Controls.Add(dateTimePicker);
-            Controls.Add(CreateButton);
+            Controls.Add(EditButton);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(tbDescription);
             Controls.Add(tbName);
-            Name = "WorkCreation";
-            Text = "Form1";
+            Name = "WorkEdit";
+            Text = "TaskEdit";
             ResumeLayout(false);
             PerformLayout();
         }
-
-        #endregion
 
         private TextBox tbName;
         private TextBox tbDescription;
         private Label label1;
         private Label label2;
         private Label label3;
-        private Button CreateButton;
+        private Button EditButton;
         private DateTimePicker dateTimePicker;
         private ComboBox cbPriority;
         private Label label4;
         private ListView listAsignees;
         private Label label5;
+        #endregion
+
+        private ComboBox cbStatus;
+        private TextBox tbStatusNote;
     }
 }

@@ -4,6 +4,9 @@
     <Compile Update="WinForms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="WinForms\WorkEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="WinForms\WorkView.cs">
       <SubType>Form</SubType>
     </Compile>

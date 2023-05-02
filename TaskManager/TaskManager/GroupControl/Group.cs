@@ -10,24 +10,14 @@ namespace TaskManager.GroupControl
 {
     public class Group: ITaskAssignee
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
         [NotMapped]
-        public User Creator { get; set; }
+        public User Creator { get; set; } = null;
 
-        [NotMapped]
         public List<User> Members { get; set; }
-
-        public Group(string name, string description, User creator, List<User> members)
-        {
-            Id = new Guid();
-            Description = description;
-            Name = name;
-            Creator = creator;
-            Members = members;
-        }
 
     }
 }

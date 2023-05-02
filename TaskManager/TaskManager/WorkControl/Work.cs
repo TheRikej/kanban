@@ -1,27 +1,26 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using TaskManager.UserControl;
 using TaskManager.WorkControl;
 
-namespace TaskManager.TaskControl
+namespace TaskManager.WorkControl
 {
     public class Work
     {
         [Key]
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public WorkStatus Status { get; set; }
-        public string StatusMessage { get; set; }
+        public WorkStatus Status { get; set; } = WorkStatus.TODO;
+        public string StatusMessage { get; set; } = "";
 
-        public User Creator { get; set; }
+        public DateTime DueDate { get; set; }
+        public int Priority { get; set; }
+
+        public User? Creator { get; set; }
         public int CreatorId { get; set; }
-        //public ITaskAssignee[] Assignees { get; set; }
 
-        public Work()
-        {
+        public List<User> Assignees { get; set; } = new();
 
-            Status = WorkStatus.TODO;
-            StatusMessage = "";
-        }
     }
 }
