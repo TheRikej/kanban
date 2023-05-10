@@ -22,4 +22,16 @@
     <Folder Include="Database\SQLtables\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="WinForms\GroupCreation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="WinForms\GroupEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="WinForms\GroupView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

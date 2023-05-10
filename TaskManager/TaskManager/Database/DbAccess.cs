@@ -13,6 +13,9 @@ using System.Numerics;
 
 namespace TaskManager.Database  
 {
+    /// <summary>
+    /// Class <c>DbAccess</c> is responsible for direct comunication with database
+    /// </summary>
     public class DbAccess: DbContext
     {
         public DbSet<User> Users { get; set; }
@@ -24,7 +27,10 @@ namespace TaskManager.Database
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlServer(DbPath);
 
-
+        /// <summary>
+        /// Method <c>RefreshDB</c> deletes and rebuilds the database.
+        /// Should be used only on Startup!
+        /// </summary>
         public void RefreshDB()
         {
             Database.EnsureDeleted();
@@ -34,11 +40,25 @@ namespace TaskManager.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
-                .HasMany(e => e.AssignedWorks)
-                .WithMany(e => e.Assignees);
+                .HasMany(e => e.GroupsMember)
+                .WithMany(e => e.Members);
+
 
             modelBuilder.Entity<User>()
-                .HasMany(e => e.OwndedWorks)
+                .HasMany(e => e.AssignedWorks)
+                .WithMany(e => e.AssignedUsers);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.OwnedWorks)
+                .WithOne(e => e.Creator)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Group>()
+                .HasMany(e => e.AssignedWorks)
+                .WithMany(e => e.AssignedGroups);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.OwnedGroups)
                 .WithOne(e => e.Creator)
                 .OnDelete(DeleteBehavior.Restrict);
 
@@ -67,5 +87,4 @@ namespace TaskManager.Database
                 );
         }
     }
-
 }

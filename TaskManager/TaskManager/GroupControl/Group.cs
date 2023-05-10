@@ -1,23 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.Infrastructure;
 using TaskManager.UserControl;
+using TaskManager.WorkControl;
 
 namespace TaskManager.GroupControl
 {
-    public class Group: ITaskAssignee
+    /// <summary>
+    /// Class <c>Group</c> is a Database representation of a Group
+    /// </summary>
+    public class Group
+
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        [NotMapped]
-        public User Creator { get; set; } = null;
+        public User Creator { get; set; }
+        public int CreatorId { get; set; }
 
         public List<User> Members { get; set; }
+
+        public List<Work> AssignedWorks { get; set; }
 
     }
 }

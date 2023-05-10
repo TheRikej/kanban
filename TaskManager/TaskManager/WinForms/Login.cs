@@ -19,13 +19,13 @@ namespace TaskManager.WinForms
             InitializeComponent();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void Button1_Click(object sender, EventArgs e)
         {
             if (await UserDatabase.CheckPasswordAsync(tbEmail.Text, tbPassword.Text))
             {
-                User user = await UserDatabase.GetUserByEmailAsync(tbEmail.Text);
-                if (user == null) 
-                { 
+                User? user = await UserDatabase.GetUserByEmailAsync(tbEmail.Text);
+                if (user == null)
+                {
                     MessageBox.Show("Unkown Error");
                     return;
                 }

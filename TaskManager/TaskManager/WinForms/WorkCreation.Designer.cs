@@ -37,8 +37,10 @@
             dateTimePicker = new DateTimePicker();
             cbPriority = new ComboBox();
             label4 = new Label();
-            listAsignees = new ListView();
+            listAssignees = new ListView();
             label5 = new Label();
+            listAssignedGroups = new ListView();
+            label6 = new Label();
             SuspendLayout();
             // 
             // tbName
@@ -85,7 +87,7 @@
             // 
             // CreateButton
             // 
-            CreateButton.Location = new Point(309, 468);
+            CreateButton.Location = new Point(300, 620);
             CreateButton.Name = "CreateButton";
             CreateButton.Size = new Size(180, 29);
             CreateButton.TabIndex = 6;
@@ -124,31 +126,51 @@
             label4.TabIndex = 9;
             label4.Text = "Due Date";
             // 
-            // listAsignees
+            // listAssignees
             // 
-            listAsignees.CheckBoxes = true;
-            listAsignees.Location = new Point(102, 337);
-            listAsignees.Name = "listAsignees";
-            listAsignees.Size = new Size(604, 116);
-            listAsignees.TabIndex = 10;
-            listAsignees.UseCompatibleStateImageBehavior = false;
+            listAssignees.CheckBoxes = true;
+            listAssignees.Location = new Point(102, 337);
+            listAssignees.Name = "listAssignees";
+            listAssignees.Size = new Size(604, 116);
+            listAssignees.TabIndex = 10;
+            listAssignees.UseCompatibleStateImageBehavior = false;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Location = new Point(102, 314);
             label5.Name = "label5";
-            label5.Size = new Size(68, 20);
+            label5.Size = new Size(74, 20);
             label5.TabIndex = 11;
-            label5.Text = "Asignees";
+            label5.Text = "Assignees";
+            // 
+            // listAssignedGroups
+            // 
+            listAssignedGroups.CheckBoxes = true;
+            listAssignedGroups.Location = new Point(101, 493);
+            listAssignedGroups.Name = "listAssignedGroups";
+            listAssignedGroups.Size = new Size(604, 121);
+            listAssignedGroups.TabIndex = 12;
+            listAssignedGroups.UseCompatibleStateImageBehavior = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(102, 470);
+            label6.Name = "label6";
+            label6.Size = new Size(120, 20);
+            label6.TabIndex = 13;
+            label6.Text = "Assigned Groups";
             // 
             // WorkCreation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 511);
+            ClientSize = new Size(800, 659);
+            Controls.Add(label6);
+            Controls.Add(listAssignedGroups);
             Controls.Add(label5);
-            Controls.Add(listAsignees);
+            Controls.Add(listAssignees);
             Controls.Add(label4);
             Controls.Add(cbPriority);
             Controls.Add(dateTimePicker);
@@ -159,7 +181,7 @@
             Controls.Add(tbDescription);
             Controls.Add(tbName);
             Name = "WorkCreation";
-            Text = "Form1";
+            Text = "Create Task";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -175,7 +197,9 @@
         private DateTimePicker dateTimePicker;
         private ComboBox cbPriority;
         private Label label4;
-        private ListView listAsignees;
+        private ListView listAssignees;
         private Label label5;
+        private ListView listAssignedGroups;
+        private Label label6;
     }
 }

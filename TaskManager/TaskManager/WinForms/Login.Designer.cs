@@ -43,7 +43,7 @@
             button1.TabIndex = 0;
             button1.Text = "Login";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += Button1_Click;
             // 
             // tbPassword
             // 
@@ -77,7 +77,7 @@
             label2.TabIndex = 4;
             label2.Text = "Password";
             // 
-            // Form1
+            // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -87,8 +87,8 @@
             Controls.Add(tbEmail);
             Controls.Add(tbPassword);
             Controls.Add(button1);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "Login";
+            Text = "Login";
             ResumeLayout(false);
             PerformLayout();
         }

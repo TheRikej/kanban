@@ -11,7 +11,7 @@ namespace TaskManager
         [STAThread]
         static void Main()
         {
-            new DbAccess().RefreshDB();
+            //new DbAccess().RefreshDB();
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
