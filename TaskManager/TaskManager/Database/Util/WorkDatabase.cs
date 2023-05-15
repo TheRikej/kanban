@@ -21,6 +21,7 @@ namespace TaskManager.Database.Util
             return await db.Works
                 .Where(work => work.Creator == user || work.AssignedUsers.Contains(user))
                 .Include(a => a.AssignedUsers)
+                .Include(g => g.AssignedGroups)
                 .ToListAsync();
         }
 

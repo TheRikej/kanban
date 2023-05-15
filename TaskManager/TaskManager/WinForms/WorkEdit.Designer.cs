@@ -191,9 +191,8 @@ namespace TaskManager.WinForms
             listGroups.Location = new Point(101, 485);
             listGroups.Name = "listGroups";
             listGroups.Size = new Size(605, 114);
-            listGroups.TabIndex = 16;
+            listGroups.TabIndex = 10;
             listGroups.UseCompatibleStateImageBehavior = false;
-            listGroups.View = View.Details;
             // 
             // label8
             // 

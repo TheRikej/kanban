@@ -77,7 +77,7 @@ namespace TaskManager.WinForms
 
                 foreach (var item in listGroups.Items.Cast<ListViewItem>())
                 {
-                    if (_work.AssignedUsers
+                    if (_work.AssignedGroups
                         .FirstOrDefault(a => a.Id == _groups[item.Index].Id) != null)
                     {
                         item.Checked = true;

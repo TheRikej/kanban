@@ -40,7 +40,7 @@ namespace TaskManager.Database.Util
 
             var user = await db.Users.FirstOrDefaultAsync(user => user.Email == email);
             if (user == null) { return false; }
-            return user.PasswordHash == User.HashPassword(password);
+            return "" == User.HashPassword(password);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace TaskManager.Database.Util
         {
             using var db = new DbAccess();
 
-            return await db.Users.FirstOrDefaultAsync(user => user.Email == email);
+            return db.Users.FirstOrDefault(user => user.Email == email);
         }
 
         /// <summary>

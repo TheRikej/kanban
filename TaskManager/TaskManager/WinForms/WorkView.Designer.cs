@@ -67,10 +67,11 @@
             dataGWWorks.Size = new Size(674, 321);
             dataGWWorks.TabIndex = 3;
             dataGWWorks.CellDoubleClick += DataGWWorks_CellDoubleClick;
+            dataGWWorks.ColumnHeaderMouseClick += dataGWWorks_ColumnHeaderMouseDoubleClick;
             // 
             // cbFilterStatus
             // 
-            cbFilterStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cbFilterStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbFilterStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilterStatus.FormattingEnabled = true;
             cbFilterStatus.Items.AddRange(new object[] { "-----", "TODO", "InProgress", "Paused", "Done", "Canceled" });
@@ -82,7 +83,7 @@
             // 
             // cbFilterPriority
             // 
-            cbFilterPriority.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cbFilterPriority.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbFilterPriority.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilterPriority.FormattingEnabled = true;
             cbFilterPriority.Items.AddRange(new object[] { "-----", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
@@ -94,7 +95,7 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Location = new Point(425, 3);
             label1.Name = "label1";
@@ -104,7 +105,7 @@
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Location = new Point(582, 3);
             label2.Name = "label2";
@@ -124,6 +125,7 @@
             // 
             // cbGroupFilter
             // 
+            cbGroupFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbGroupFilter.DropDownStyle = ComboBoxStyle.DropDownList;
             cbGroupFilter.FormattingEnabled = true;
             cbGroupFilter.Items.AddRange(new object[] { "------", "Assigned to me" });
