@@ -12,8 +12,9 @@ namespace TaskManager.Database.Util
             using var db = new DbAccess();
 
             return await db.Groups
-                .Where(group => group.Members.Contains(user) || group.Creator == user)
+                .Where(group => user.AdminRights || group.Members.Contains(user) || group.Creator == user)
                 .Include(g => g.Members)
+                .Include(g => g.Creator)
                 .ToListAsync();
         }
 
@@ -22,8 +23,9 @@ namespace TaskManager.Database.Util
             using var db = new DbAccess();
 
             return db.Groups
-                .Where(group => group.Members.Contains(user) || group.Creator == user)
+                .Where(group => user.AdminRights || group.Members.Contains(user) || group.Creator == user)
                 .Include(g => g.Members)
+                .Include(g => g.Creator)
                 .ToList();
         }
 
@@ -61,7 +63,7 @@ namespace TaskManager.Database.Util
             db.AttachRange(members);
 
             var group = await db.Groups
-                .Include(work => work.Members)
+                .Include(group => group.Members)
                 .SingleOrDefaultAsync(work => work.Id == id);
 
             if (group != null)

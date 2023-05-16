@@ -1,6 +1,6 @@
 ﻿namespace TaskManager
 {
-    partial class GroupView
+    partial class UserView
     {
         /// <summary>
         ///  Required designer variable.
@@ -36,13 +36,13 @@
             // 
             // button1
             // 
-            button1.Location = new Point(70, 425);
+            button1.Location = new Point(70, 29);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
-            button1.Text = "New Group";
+            button1.Text = "New User";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += NewTaskButton_Click;
+            button1.Click += NewUserButton_Click;
             // 
             // dataGWWorks
             // 
@@ -64,7 +64,7 @@
             // 
             // WorkNavButton
             // 
-            WorkNavButton.Location = new Point(30, 27);
+            WorkNavButton.Location = new Point(650, 438);
             WorkNavButton.Name = "WorkNavButton";
             WorkNavButton.Size = new Size(94, 29);
             WorkNavButton.TabIndex = 4;
@@ -72,7 +72,7 @@
             WorkNavButton.UseVisualStyleBackColor = true;
             WorkNavButton.Click += WorkNavButton_Click;
             // 
-            // GroupView
+            // UserView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -80,8 +80,8 @@
             Controls.Add(WorkNavButton);
             Controls.Add(dataGWWorks);
             Controls.Add(button1);
-            Name = "GroupView";
-            Text = "Group Navigation";
+            Name = "UserView";
+            Text = "User Navigation";
             ((System.ComponentModel.ISupportInitialize)dataGWWorks).EndInit();
             ResumeLayout(false);
         }

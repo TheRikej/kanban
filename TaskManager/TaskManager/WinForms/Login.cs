@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TaskManager.Database;
 using TaskManager.Database.Util;
 using TaskManager.UserControl;
 
@@ -16,6 +17,8 @@ namespace TaskManager.WinForms
     {
         public Login()
         {
+            using var db = new DbAccess();
+
             InitializeComponent();
         }
 

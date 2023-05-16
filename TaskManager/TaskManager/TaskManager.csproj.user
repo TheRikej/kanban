@@ -4,13 +4,13 @@
     <Compile Update="WinForms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="WinForms\WorkEdit.cs">
+    <Compile Update="WinForms\Works\WorkEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="WinForms\WorkView.cs">
+    <Compile Update="WinForms\Works\WorkView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="WinForms\WorkCreation.cs">
+    <Compile Update="WinForms\Works\WorkCreation.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

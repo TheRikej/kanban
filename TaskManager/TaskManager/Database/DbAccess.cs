@@ -63,26 +63,29 @@ namespace TaskManager.Database
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<User>().HasData(
-                new User
-                {
-                    Id = -1,
-                    Name = "David",
-                    Email = "m@x",
-                    PasswordHash = User.HashPassword("pass")
-                },
-                new User
-                {
-                    Id = -2,    
-                    Name = "Rikej",
-                    Email = "no",
-                    PasswordHash = User.HashPassword("12")
-                },
+                //new User
+                //{
+                //    Id = -1,
+                //    Name = "David",
+                //    Email = "m@x",
+                //    PasswordHash = User.HashPassword("pass"),
+                //    AdminRights = false
+                //},
+                //new User
+                //{
+                //    Id = -2,    
+                //    Name = "Rikej",
+                //    Email = "no",
+                //    PasswordHash = User.HashPassword("12"),
+                //    AdminRights = false
+                //},
                 new User
                 {
                     Id = 1,
                     Name = "Admin",
                     Email = "",
-                    PasswordHash = User.HashPassword("")
+                    PasswordHash = User.HashPassword(""),
+                    AdminRights = true
                 }
                 );
         }

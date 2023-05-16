@@ -6,6 +6,9 @@ using TaskManager.GroupControl;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
+using System.Data.Entity.Core.EntityClient;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System;
 
 namespace TaskManager
 {
@@ -18,7 +21,11 @@ namespace TaskManager
             _user = user;
             InitializeComponent();
             _groups = GroupDatabase.GetGroupsOfUser(_user);
-
+            if (_user.AdminRights)
+            {
+                userButton.Visible = true;
+                userButton.Enabled = true;
+            }
 
             cbGroupFilter.Items.AddRange(_groups.Select(g => g.Name).ToArray());
 
@@ -37,10 +44,8 @@ namespace TaskManager
 
         private async Task RenderWorks()
         {
-            //DataView dv = new DataView();
-            //dv.
-
-            dataGWWorks.DataSource = (await WorkDatabase.GetWorksOfUserAsync(_user))
+#pragma warning disable EF1001 // Internal EF Core API usage.
+            SortableBindingList<Work> works = new((await WorkDatabase.GetWorksOfUserAsync(_user))
                     .Where(work => (cbFilterStatus.SelectedIndex == 0)
                             || work.Status == (WorkStatus)(cbFilterStatus.SelectedIndex - 1))
                     .Where(work => work.Priority >= cbFilterPriority.SelectedIndex)
@@ -51,8 +56,10 @@ namespace TaskManager
                                 .Select(g => g.Id)
                                 .Contains(_groups[cbGroupFilter.SelectedIndex - 2].Id))
                         )
-                    .OrderBy(work => (work.Status, -work.Priority, work.DueDate))
-                    .ToList();
+                    .ToList());
+#pragma warning restore EF1001 // Internal EF Core API usage.
+            dataGWWorks.DataSource = works;
+
 
             dataGWWorks.Columns["Creator"].ValueType = typeof(string);
             dataGWWorks.Columns.Remove("CreatorId");
@@ -84,12 +91,18 @@ namespace TaskManager
             new GroupView(_user).ShowDialog();
         }
 
+        private void UserButton_Click(object sender, EventArgs e)
+        {
+            Dispose();
+            new UserView(_user).ShowDialog();
+        }
+
         private async void CBGroupFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             await RenderWorks();
         }
 
-        private void dataGWWorks_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DataGWWorks_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             // Check which column is selected, otherwise set NewColumn to null.
             DataGridViewColumn newColumn = dataGWWorks.Columns[e.ColumnIndex];
@@ -103,20 +116,20 @@ namespace TaskManager
             {
                 // Sort the same column again, reversing the SortOrder.
                 if (oldColumn == newColumn &&
-                    dataGWWorks.SortOrder == SortOrder.Ascending)
+                    dataGWWorks.SortOrder == SortOrder.Descending)
                 {
-                    direction = ListSortDirection.Descending;
+                    direction = ListSortDirection.Ascending;
                 }
                 else
                 {
                     // Sort a new column and remove the old SortGlyph.
-                    direction = ListSortDirection.Ascending;
+                    direction = ListSortDirection.Descending;
                     oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
                 }
             }
             else
             {
-                direction = ListSortDirection.Ascending;
+                direction = ListSortDirection.Descending;
             }
 
             // If no column has been selected, display an error dialog  box.
@@ -131,7 +144,7 @@ namespace TaskManager
                 dataGWWorks.Sort(newColumn, direction);
                 newColumn.HeaderCell.SortGlyphDirection =
                     direction == ListSortDirection.Ascending ?
-                    SortOrder.Ascending : SortOrder.Descending;
+                    SortOrder.Descending : SortOrder.Ascending;
             }
         }
     }

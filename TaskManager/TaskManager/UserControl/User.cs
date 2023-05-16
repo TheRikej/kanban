@@ -19,11 +19,9 @@ namespace TaskManager.UserControl
         public string Name { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
+        public bool AdminRights { get; set; }
 
-        public User? Supervisor { get; set; }
-
-        public List<Group> GroupsMember { get; set; }
-
+        public List<Group> GroupsMember { get; set; } = new();
         public List<Work> OwnedWorks { get; } = new();
         public List<Group> OwnedGroups { get; } = new();
         public List<Work> AssignedWorks { get; } = new();
@@ -32,15 +30,14 @@ namespace TaskManager.UserControl
 
         public static string HashPassword(string password)
         {
-            return password;
-            //using SHA256 sha256Hash = SHA256.Create() ;
-            //byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-            //StringBuilder builder = new();
-            //for (int i = 0; i < bytes.Length; i++)
-            //{
-            //    builder.Append(bytes[i].ToString());
-            //}
-            //return builder.ToString();
+            using SHA256 sha256Hash = SHA256.Create();
+            byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
+            StringBuilder builder = new();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString());
+            }
+            return builder.ToString();
 
         }
         public override string ToString()

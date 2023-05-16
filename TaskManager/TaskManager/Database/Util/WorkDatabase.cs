@@ -19,9 +19,10 @@ namespace TaskManager.Database.Util
             using var db = new DbAccess();
 
             return await db.Works
-                .Where(work => work.Creator == user || work.AssignedUsers.Contains(user))
+                .Where(work => user.AdminRights || work.Creator == user || work.AssignedUsers.Contains(user) || work.AssignedGroups.Where(group => group.Members.Contains(user)).Any())
                 .Include(a => a.AssignedUsers)
                 .Include(g => g.AssignedGroups)
+                .Include(c => c.Creator)
                 .ToListAsync();
         }
 

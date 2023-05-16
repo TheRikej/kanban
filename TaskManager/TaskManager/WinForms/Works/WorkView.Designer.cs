@@ -36,13 +36,14 @@
             label2 = new Label();
             groupButton = new Button();
             cbGroupFilter = new ComboBox();
+            label3 = new Label();
+            userButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGWWorks).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button1.Location = new Point(70, 426);
+            button1.Location = new Point(70, 27);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
@@ -64,14 +65,13 @@
             dataGWWorks.RowHeadersWidth = 51;
             dataGWWorks.RowTemplate.Height = 29;
             dataGWWorks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGWWorks.Size = new Size(674, 321);
+            dataGWWorks.Size = new Size(674, 320);
             dataGWWorks.TabIndex = 3;
             dataGWWorks.CellDoubleClick += DataGWWorks_CellDoubleClick;
-            dataGWWorks.ColumnHeaderMouseClick += dataGWWorks_ColumnHeaderMouseDoubleClick;
+            dataGWWorks.ColumnHeaderMouseClick += DataGWWorks_ColumnHeaderMouseDoubleClick;
             // 
             // cbFilterStatus
             // 
-            cbFilterStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbFilterStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilterStatus.FormattingEnabled = true;
             cbFilterStatus.Items.AddRange(new object[] { "-----", "TODO", "InProgress", "Paused", "Done", "Canceled" });
@@ -83,7 +83,6 @@
             // 
             // cbFilterPriority
             // 
-            cbFilterPriority.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbFilterPriority.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFilterPriority.FormattingEnabled = true;
             cbFilterPriority.Items.AddRange(new object[] { "-----", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
@@ -95,7 +94,6 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Location = new Point(425, 3);
             label1.Name = "label1";
@@ -105,7 +103,6 @@
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Location = new Point(582, 3);
             label2.Name = "label2";
@@ -115,7 +112,8 @@
             // 
             // groupButton
             // 
-            groupButton.Location = new Point(70, 26);
+            groupButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            groupButton.Location = new Point(650, 418);
             groupButton.Name = "groupButton";
             groupButton.Size = new Size(94, 29);
             groupButton.TabIndex = 8;
@@ -125,7 +123,6 @@
             // 
             // cbGroupFilter
             // 
-            cbGroupFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cbGroupFilter.DropDownStyle = ComboBoxStyle.DropDownList;
             cbGroupFilter.FormattingEnabled = true;
             cbGroupFilter.Items.AddRange(new object[] { "------", "Assigned to me" });
@@ -135,11 +132,35 @@
             cbGroupFilter.TabIndex = 9;
             cbGroupFilter.SelectedIndexChanged += CBGroupFilter_SelectedIndexChanged;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(268, 3);
+            label3.Name = "label3";
+            label3.Size = new Size(114, 20);
+            label3.TabIndex = 10;
+            label3.Text = "Assigned Group";
+            // 
+            // userButton
+            // 
+            userButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            userButton.Enabled = false;
+            userButton.Location = new Point(537, 418);
+            userButton.Name = "userButton";
+            userButton.Size = new Size(94, 29);
+            userButton.TabIndex = 11;
+            userButton.Text = "Users";
+            userButton.UseVisualStyleBackColor = true;
+            userButton.Visible = false;
+            userButton.Click += UserButton_Click;
+            // 
             // WorkView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(821, 479);
+            ClientSize = new Size(821, 468);
+            Controls.Add(userButton);
+            Controls.Add(label3);
             Controls.Add(cbGroupFilter);
             Controls.Add(groupButton);
             Controls.Add(label2);
@@ -166,5 +187,7 @@
         private Label label2;
         private Button groupButton;
         private ComboBox cbGroupFilter;
+        private Label label3;
+        private Button userButton;
     }
 }

@@ -40,7 +40,7 @@
             button1.Location = new Point(402, 246);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
+            button1.TabIndex = 2;
             button1.Text = "Login";
             button1.UseVisualStyleBackColor = true;
             button1.Click += Button1_Click;
@@ -51,13 +51,14 @@
             tbPassword.Name = "tbPassword";
             tbPassword.Size = new Size(227, 27);
             tbPassword.TabIndex = 1;
+            tbPassword.UseSystemPasswordChar = true;
             // 
             // tbEmail
             // 
             tbEmail.Location = new Point(269, 160);
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(227, 27);
-            tbEmail.TabIndex = 2;
+            tbEmail.TabIndex = 0;
             // 
             // label1
             // 

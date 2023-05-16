@@ -21,12 +21,50 @@ namespace TaskManager.Database.Util
             {
                 Name = name,
                 Email = email,
-                PasswordHash = User.HashPassword(password)
+                PasswordHash = User.HashPassword(password),
+                AdminRights = false
             };
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
 
             return user;
+        }
+
+        public static async Task<bool> EditUserAsync(int id, string name, string email)
+        {
+            using var db = new DbAccess();
+
+            var user = await db.Users
+                .SingleOrDefaultAsync(work => work.Id == id);
+
+            if (user != null)
+            {
+                db.Users.Attach(user);
+                user.Name = name;
+                user.Email = email;
+
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public static async Task<bool> ChangePasswordAsync(int id,  string password)
+        {
+            using var db = new DbAccess();
+
+            var user = await db.Users
+                .SingleOrDefaultAsync(work => work.Id == id);
+
+            if (user != null)
+            {
+                db.Users.Attach(user);
+                user.PasswordHash = User.HashPassword(password);
+
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -40,7 +78,7 @@ namespace TaskManager.Database.Util
 
             var user = await db.Users.FirstOrDefaultAsync(user => user.Email == email);
             if (user == null) { return false; }
-            return "" == User.HashPassword(password);
+            return user.PasswordHash == User.HashPassword(password);
         }
 
         /// <summary>
@@ -51,7 +89,7 @@ namespace TaskManager.Database.Util
         {
             using var db = new DbAccess();
 
-            return db.Users.FirstOrDefault(user => user.Email == email);
+            return await db.Users.FirstOrDefaultAsync(user => user.Email == email);
         }
 
         /// <summary>
