@@ -13,15 +13,15 @@ namespace TaskManager.WorkControl
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; } = "";
+        public string Description { get; set; } = "";
         public WorkStatus Status { get; set; } = WorkStatus.TODO;
         public string StatusMessage { get; set; } = "";
 
         public DateTime DueDate { get; set; }
         public int Priority { get; set; }
 
-        public User Creator { get; set; }
+        public User Creator { get; set; } = new();
         public int CreatorId { get; set; }
 
         public List<User> AssignedUsers { get; set; } = new();

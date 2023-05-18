@@ -17,9 +17,9 @@ namespace TaskManager.WinForms
         public WorkEdit(Work work, bool owner)
         {
             _owner = owner;
-            _users = new();
             _work = work;
             InitializeComponent();
+
             tbName.Text = _work.Name;
             tbDescription.Text = _work.Description;
             dateTimePicker.Value = _work.DueDate;

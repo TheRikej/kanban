@@ -10,7 +10,7 @@ namespace TaskManager.WinForms
     {
         private readonly bool _owner;
         private readonly Group _group;
-        private List<User> _users;
+        private List<User> _users = new();
         public GroupEdit(Group group, bool owner)
         {
             _group = group;

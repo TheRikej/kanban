@@ -6,7 +6,7 @@ namespace TaskManager.WorkControl
     public partial class GroupCreation : Form
     {
         private readonly User _user;
-        private List<User> _userList;
+        private List<User> _userList = new();
         public GroupCreation(User user)
         {
             _user = user;
