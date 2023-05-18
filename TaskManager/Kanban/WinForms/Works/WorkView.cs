@@ -1,14 +1,11 @@
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.ComponentModel;
+using System.Data;
 using TaskManager.Database.Util;
-using TaskManager.WorkControl;
+using TaskManager.GroupControl;
 using TaskManager.UserControl;
 using TaskManager.WinForms;
-using TaskManager.GroupControl;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
-using System.Data.Entity.Core.EntityClient;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using System;
+using TaskManager.WorkControl;
 
 namespace TaskManager
 {
@@ -44,7 +41,6 @@ namespace TaskManager
 
         private async Task RenderWorks()
         {
-#pragma warning disable EF1001 // Internal EF Core API usage.
             SortableBindingList<Work> works = new((await WorkDatabase.GetWorksOfUserAsync(_user))
                     .Where(work => (cbFilterStatus.SelectedIndex == 0)
                             || work.Status == (WorkStatus)(cbFilterStatus.SelectedIndex - 1))
@@ -57,7 +53,6 @@ namespace TaskManager
                                 .Contains(_groups[cbGroupFilter.SelectedIndex - 2].Id))
                         )
                     .ToList());
-#pragma warning restore EF1001 // Internal EF Core API usage.
             dataGWWorks.DataSource = works;
 
 

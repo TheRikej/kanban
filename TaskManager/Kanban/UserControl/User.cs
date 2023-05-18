@@ -14,11 +14,11 @@ namespace TaskManager.UserControl
     public class User
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
+        public string Name { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string PasswordHash { get; set; } = "";
         public bool AdminRights { get; set; }
 
         public List<Group> GroupsMember { get; set; } = new();
@@ -35,7 +35,7 @@ namespace TaskManager.UserControl
             StringBuilder builder = new();
             for (int i = 0; i < bytes.Length; i++)
             {
-                builder.Append(bytes[i].ToString());
+                builder.Append(bytes[i]);
             }
             return builder.ToString();
 

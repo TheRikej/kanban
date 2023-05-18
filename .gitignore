@@ -6,3 +6,5 @@
 /TaskManager/.vs
 /TaskManager/TaskManager/bin/Debug/net6.0-windows
 /TaskManager/TaskManager/bin/Release/net6.0-windows
+/TaskManager/Kanban/obj
+/TaskManager/Kanban/bin/Debug/net6.0-windows

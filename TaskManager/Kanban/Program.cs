@@ -11,7 +11,7 @@ namespace TaskManager
         [STAThread]
         static void Main()
         {
-            //new DbAccess().RefreshDB();
+            new DbAccess().RefreshDB(); // Comment this line to stop DB reseting
 
             ApplicationConfiguration.Initialize();
             Application.Run(new Login());

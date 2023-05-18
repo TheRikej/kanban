@@ -112,7 +112,7 @@
             // 
             // groupButton
             // 
-            groupButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            groupButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupButton.Location = new Point(650, 418);
             groupButton.Name = "groupButton";
             groupButton.Size = new Size(94, 29);
@@ -143,7 +143,7 @@
             // 
             // userButton
             // 
-            userButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            userButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             userButton.Enabled = false;
             userButton.Location = new Point(537, 418);
             userButton.Name = "userButton";

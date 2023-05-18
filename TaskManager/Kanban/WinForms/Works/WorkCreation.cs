@@ -7,8 +7,8 @@ namespace TaskManager.WorkControl
     public partial class WorkCreation : Form
     {
         private readonly User _user;
-        private List<User> _userList;
-        private List<Group> _groupList;
+        private List<User> _userList = new();
+        private List<Group> _groupList = new();
         public WorkCreation(User user)
         {
             _user = user;

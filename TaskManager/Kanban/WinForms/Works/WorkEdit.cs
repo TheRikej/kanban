@@ -11,9 +11,9 @@ namespace TaskManager.WinForms
     public partial class WorkEdit : Form
     {
         private readonly Work _work;
-        private List<User> _users;
-        private List<Group> _groups;
-        private bool _owner;
+        private List<User> _users = new();
+        private List<Group> _groups = new();
+        private readonly bool _owner;
         public WorkEdit(Work work, bool owner)
         {
             _owner = owner;
