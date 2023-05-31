@@ -21,7 +21,7 @@ namespace TaskManager.WorkControl
         public DateTime DueDate { get; set; }
         public int Priority { get; set; }
 
-        public User Creator { get; set; } = new();
+        public User Creator { get; set; }
         public int CreatorId { get; set; }
 
         public List<User> AssignedUsers { get; set; } = new();

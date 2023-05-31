@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.Infrastructure;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure;
 using TaskManager.UserControl;
 using TaskManager.WorkControl;
 
@@ -14,10 +15,10 @@ namespace TaskManager.GroupControl
         public string Name { get; set; } = "";
         public string Description { get; set; } = "";
 
-        public User Creator { get; set; } = new();
+        public User Creator { get; set; }
         public int CreatorId { get; set; }
 
-        public List<User> Members { get; set; } = new();
+        public List<User> Members { get; set; }
 
         public List<Work> AssignedWorks { get; set; } = new();
 
